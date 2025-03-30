@@ -3,7 +3,6 @@ package it.dogs.learn2.service;
 import it.dogs.learn2.exception.UserNotFoundException;
 import it.dogs.learn2.model.User;
 import it.dogs.learn2.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
