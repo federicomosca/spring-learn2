@@ -3,6 +3,7 @@ package it.dogs.learn2.service;
 import it.dogs.learn2.exception.UserNotFoundException;
 import it.dogs.learn2.model.User;
 import it.dogs.learn2.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,18 @@ public class UserService {
 
     public void deleteUserById(Long id){
         userRepository.deleteById(id);
+    }
+
+    public User updateUser(User user) {
+        User existing = userRepository.findById(user.getId())
+                .orElseThrow(()-> new UserNotFoundException(user.getId()));
+
+        existing.setFirstName(user.getFirstName());
+        existing.setLastName(user.getLastName());
+        existing.setEmail(user.getEmail());
+        existing.setBirthDate(user.getBirthDate());
+        existing.setFiscalCode(user.getFiscalCode());
+
+        return userRepository.save(existing);
     }
 }

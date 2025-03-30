@@ -8,4 +8,7 @@ import java.util.List;
 public interface UserFacade {
     List<UserResponseDTO> getAllUsers();
     UserResponseDTO createUser(UserRequestDTO requestDTO);
+    UserResponseDTO updateUser(Long id, UserRequestDTO requestDTO);
+    UserResponseDTO getUserDetails(Long id);
+    void deleteUser(Long id);
 }
