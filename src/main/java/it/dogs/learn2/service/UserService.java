@@ -30,16 +30,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User updateUser(User user) {
-        User existing = userRepository.findById(user.getId())
-                .orElseThrow(()-> new UserNotFoundException(user.getId()));
-
-        existing.setFirstName(user.getFirstName());
-        existing.setLastName(user.getLastName());
-        existing.setEmail(user.getEmail());
-        existing.setBirthDate(user.getBirthDate());
-        existing.setFiscalCode(user.getFiscalCode());
-
-        return userRepository.save(existing);
+    public User save(User user){
+        return userRepository.save(user);
     }
 }

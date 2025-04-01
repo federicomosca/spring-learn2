@@ -53,15 +53,15 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public UserResponseDTO updateUser(Long id, UserRequestDTO requestDTO) {
-        User user = new User();
-        user.setId(id);
-        user.setFirstName(requestDTO.firstName());
-        user.setLastName(requestDTO.lastName());
-        user.setEmail(requestDTO.email());
-        user.setBirthDate(requestDTO.birthDate());
-        user.setFiscalCode(requestDTO.fiscalCode());
+        User existing = userService.getUserById(id);
 
-        User updated = userService.updateUser(user);
+        existing.setFirstName(requestDTO.firstName());
+        existing.setLastName(requestDTO.lastName());
+        existing.setEmail(requestDTO.email());
+        existing.setBirthDate(requestDTO.birthDate());
+        existing.setFiscalCode(requestDTO.fiscalCode());
+
+        User updated = userService.save(existing);
 
         return new UserResponseDTO(
                 updated.getId(),
