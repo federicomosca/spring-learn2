@@ -2,7 +2,7 @@ package it.dogs.learn2.facade.implementation;
 
 import it.dogs.learn2.dto.CourseRequestDTO;
 import it.dogs.learn2.dto.CourseResponseDTO;
-import it.dogs.learn2.facade.definition.CourseFacade;
+import it.dogs.learn2.facade.definition.CourseFacadeDefinition;
 import it.dogs.learn2.model.Course;
 import it.dogs.learn2.service.CourseService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class CourseFacadeImpl implements CourseFacade {
+public class CourseFacadeImplementation implements CourseFacadeDefinition {
 
     private final CourseService courseService;
 

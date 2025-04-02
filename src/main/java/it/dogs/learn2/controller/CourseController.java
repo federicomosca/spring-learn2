@@ -2,7 +2,7 @@ package it.dogs.learn2.controller;
 
 import it.dogs.learn2.dto.CourseRequestDTO;
 import it.dogs.learn2.dto.CourseResponseDTO;
-import it.dogs.learn2.facade.definition.CourseFacade;
+import it.dogs.learn2.facade.definition.CourseFacadeDefinition;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,32 +15,32 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CourseController {
 
-    private final CourseFacade courseFacade;
+    private final CourseFacadeDefinition courseFacadeDefinition;
 
     @GetMapping("/details/{id}")
     public ResponseEntity<CourseResponseDTO> getCourseDetails(@PathVariable Long id) {
-        return ResponseEntity.ok(courseFacade.getCourseDetails(id));
+        return ResponseEntity.ok(courseFacadeDefinition.getCourseDetails(id));
     }
 
     @GetMapping
     public List<CourseResponseDTO> getAllCourses() {
-        return courseFacade.getAllCourses();
+        return courseFacadeDefinition.getAllCourses();
     }
 
     @PostMapping("/create")
     public ResponseEntity<CourseResponseDTO> createCourse(@RequestBody CourseRequestDTO requestDTO) {
-        return ResponseEntity.ok(courseFacade.createCourse(requestDTO));
+        return ResponseEntity.ok(courseFacadeDefinition.createCourse(requestDTO));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<CourseResponseDTO> updateCourse(@PathVariable Long id,
                                                           @RequestBody CourseRequestDTO requestDTO) {
-        return ResponseEntity.ok(courseFacade.updateCourse(id, requestDTO));
+        return ResponseEntity.ok(courseFacadeDefinition.updateCourse(id, requestDTO));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteCourse(@PathVariable Long id) {
-        courseFacade.deleteCourse(id);
+        courseFacadeDefinition.deleteCourse(id);
         return ResponseEntity.noContent().build();
     }
 }
